@@ -26,7 +26,7 @@ SECRET_KEY = 'jjkaplur+5bu3(-5ro^^@rs9ytbxn!5-b52^h@$e+xt5%24(1('
 DEBUG = True
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['linkwork.club']
 
 
 # Application definition

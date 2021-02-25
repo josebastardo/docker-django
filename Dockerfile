@@ -1,5 +1,5 @@
 #base image
-FROM python:3.7-alpine
+FROM python:3.7-buster
 
 RUN mkdir /app
 
@@ -20,4 +20,5 @@ COPY ./app /app
 
 RUN ls
 EXPOSE 8000
+CMD ["python", "manage.py", "collectstatic"]
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
