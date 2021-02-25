@@ -1,0 +1,121 @@
+{% extends "base_index.html" %}
+
+
+{% block sidebar%}
+
+
+        <h2>About Me</h2>
+ 
+  
+        <h3>Categories</h3>
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Software Development</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Web Development</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Testing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Research</a>
+            </li>
+        </ul>
+        <br>
+        <hr />
+        <br>
+        <hr class="d-sm-none">
+
+
+{% endblock%}
+
+
+
+{% block content %}
+
+
+              <h1 class="mt-4">{{image.title}}</h1>
+              <p class="lead">  <a href="#"> {{image.url}} </a>
+              </p>
+
+      {% if image.book_set.all %}
+
+
+
+               <div class="inner">
+                    <div class="spotlight">
+                        <div class="image">
+                    
+                    
+                          <img src="{{image.image.url}}" alt="{{image.name}}" style="width:150px;">
+                      
+                       
+                        </div>
+                        <div class="content">
+                         
+                            <p> {{ image.description |linebreaksbr  }} </p>
+                            <ul class="actions">
+                                   <li><a href="{% url 'detail' image.url %}" class="button alt"> Comentar</a></li>
+             
+                            </ul>
+                        </div>
+                    </div>
+
+       <div class="card-body">
+         <h2 class="card-title"> Books</h2>
+          <hr>
+      	<div class="comments">
+      	{% for book in image.book_set.all %}
+
+  <tr>
+          <td>
+            {% if book.cover %}
+              <img src="{{ book.cover.url }}" alt="{{ book.title }}" style="width:100px;">
+            {% else %}
+              <span class="text-muted">No cover</span>
+            {% endif %}
+          </td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>
+            <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+              Download PDF
+            </a>
+          </td>
+          <td>
+           
+            <form method="post" action="{% url 'delete_book' book.pk %}">
+              {% csrf_token %}
+               {% ifequal user.username  book.user %}
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+
+                {%endifequal%}
+            </form>
+
+
+          </td>
+        </tr>
+
+
+      	{% endfor %}
+      </div>
+      </div>
+
+      {% endif %}
+ 
+
+
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

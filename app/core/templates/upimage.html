@@ -1,0 +1,20 @@
+{% extends 'base_index.html' %}
+
+
+ 
+{% block content %}
+
+    <form action="{% url 'upimage' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+    <p> Name:   <input id="id_title" type="text" name="title" required> </p>
+
+      <p> Image profile <input id="id_image" type="file" accept="image/*" name="image" required> </p>
+  
+        <p> Description:  <textarea  id="id_descripction" name="description"     required></textarea></p>
+
+      <input type="submit" value="Submit" />
+    </form>
+   
+   {% endblock %}
+  

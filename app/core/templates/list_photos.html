@@ -1,0 +1,60 @@
+{% extends "base_index.html" %}
+
+<title> {% block title %} {{image.name}}  {% endblock %}</title>
+
+ {% block content %}
+
+            <section id="two" class="wrapper style2 alt">
+
+            {% for image in images %}
+                <div class="inner">
+                    <div class="spotlight">
+                        <div class="image">
+                    
+                    
+                          <img src="{{image.image.url}}" alt="{{image.name}}" style="width:320px;">
+                          <p>{{image.name}}</p>
+                       
+                        </div>
+                        <div class="content">
+                            <h3> {{ image.title }} </h3>
+                            <p> {{ image.description |linebreaksbr  }} </p>
+                            <ul class="actions">
+                                   <li><a href="{% url 'detail' image.url %}" class="button alt"> Comentar</a></li>
+                                   <li><a href="{% url 'book_list_user' image.url %}" class="button alt">  Ver Libros</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    {% empty %}
+                    <p>No workers here yet :(</p>
+
+              {% endfor %}
+
+
+              
+                <section id="one" class="wrapper">
+                <div class="inner split">
+                    <section>
+                            <h2> Escribenos   </h2>
+                        <ul class="contact">
+                            <li class="fa-twitter"><a href="#">twitter.com/untitled </a></li>
+                            <li class="fa-facebook"><a href="#">facebook.com/untitled </a></li>
+                            <li class="fa-instagram"><a href="#">instagram.com/untitled </a></li>
+                                       </ul>
+                    </section>
+                    <section>
+                        <ul class="checklist">
+                            <li>fill perfil</li>
+                            <li>upload pdf </li>
+                            <li>Tempus lorem adipiscing et lorem</li>
+                            <li>Morbi pharetra vitae felis placerat</li>
+                  
+                        </ul>
+                    </section>
+              
+            </section>
+              </div>
+
+ {% endblock %}

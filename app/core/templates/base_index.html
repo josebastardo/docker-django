@@ -1,0 +1,114 @@
+{% load static %}
+
+
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+	
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<meta name="description" content="algo"   />
+		<meta name="keywords"  content=" palabra"          />
+		<title> {% block title %}  {% endblock %}</title>
+			
+	<link rel="stylesheet" href="{% static 'assets/css/style.css' %}"/>
+		<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}"/>
+        	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
+
+	<style type="text/css">
+ 
+		.main{
+			margin-left:160px;
+			padding: 0px 10px;
+		}
+ 
+ 		.container{
+			margin-left:50px;
+			padding: 0px 10px;
+		}
+ 
+	</style>
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+         
+		<!-- Banner -->
+			<section id="banner">
+				<header class="banner fixed-top" role="banner">
+				<div class="inner split">
+					<section>
+						<h2><a href="#">Welcome linkwork.club, work us for you!! </a></h2>
+					</section>
+					<section>
+						<p> upload your pdf, and share with your students.</p>
+						<ul class="actions">
+
+						
+							{% if user.is_authenticated %}
+							<h3> {{ user.username }}! </h3>
+							<p><a href="{% url 'logout' %}"    class="button special" >logout</a></p>
+							{% else %}
+								<li><a href="/signup" class="button special" >Register</a> </li>
+							<p>You are not logged in</p>
+						   <li> <a href="{% url 'login' %}"   class="button special" >login</a> </li>
+
+							{% endif %}
+					
+						</ul
+						</header>
+					</section>
+				</div>
+
+
+</section>
+
+		<!-- One  list of image-->
+	
+	
+<section>
+
+	{% include 'navbar.html'%}	
+<div class="container" style="margin-top:30px">
+	<div class="row">
+
+			{% block content %}
+
+			{% endblock %}
+
+		
+		</div>
+
+	</div>
+
+</div>
+		<!-- Footer <footer id="footer"> -->
+<footer id= "footer" class="content-info container-fluid">
+<svg class="row" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024.45 100" style="position: relative;bottom: -10px;">
+<polygon points="0 100 0 78.11 512.22 0 1024.44 78.11 1024.44 100 0 100" style="fill:#202020"></polygon>
+</svg>
+				<div class="copyright" >
+					&copy;  <a href="#">linkwork.club</a>. All rights reserved. 
+				</div>
+</footer>
+
+</section>
+
+	
+		
+
+
+
+
+		<!-- Scripts -->
+			<script src= "{% static 'assets/js/jquery.min.js' %}">   </script>
+			<script src="{% static 'assets/js/skel.min.js' %}">    </script>
+			<script src="{% static  'assets/js/util.js' %}">   </script>
+			<script src=" {% static 'assets/js/main.js' %}">  </script>
+
+
+		
+
+	</body>
+</html>
